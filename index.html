@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <style>
+      body {
+        margin: 0;
+        padding: 30px;
+        height: calc(100vh - 60px);
+        background-color: black;
+        font-family: poppins;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        overflow: hidden;
+      }
+      .top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      .container {
+        width: 100%;
+        margin-top: 0px;
+        margin-top: -30px;
+      }
+      .again {
+        color: black;
+        background-color: white;
+        padding: 10px 30px;
+        font-weight: 600;
+        font-size: 25px;
+        border-radius: 10px;
+        cursor: pointer;
+        user-select: none;
+      }
+      .between {
+        color: white;
+        font-size: 20px;
+        user-select: none;
+      }
+      .header {
+        user-select: none;
+        font-size: 60px;
+        color: #fff;
+        font-weight: 500;
+        width: 100%;
+        text-align: center;
+        margin-top: 20px;
+      }
+      .mainsection {
+        height: fit-content;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 120px;
+      }
+      .bottom {
+        margin-top: 100px;
+        /* background-color: red; */
+        padding: 0px 100px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      .question {
+        font-family: poppins;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 130px;
+        width: 130px;
+        background-color: #fff;
+        position: absolute;
+        font-size: 80px;
+        font-weight: 550;
+        border-radius: 10px;
+        user-select: none;
+        transition-duration: 100ms;
+      }
+      .line {
+        border-radius: 10px;
+        height: 7px;
+        width: 100%;
+        background-color: #fff;
+      }
+      .form {
+        display: flex;
+        /* background-color: red; */
+        flex-direction: column;
+        gap: 20px;
+        justify-content: center;
+        width: fit-content;
+        align-items: center;
+        /* background-color: red; */
+      }
+      .sub {
+        scale: 0.8;
+        border: none;
+        font-family: poppins;
+        min-width: 160px;
+
+        height: 60px;
+        background-color: white;
+        border-radius: 10px;
+        color: black;
+        font-size: 25px;
+        font-weight: 600;
+      }
+      .score {
+        color: white;
+        font-size: 25px;
+        width: 300px;
+      }
+      .reply {
+        margin-bottom: 30px;
+        font-size: 32px;
+      }
+      .guess {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .minus {
+        height: 35px;
+        width: 35px;
+        background-color: #fff;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .plus {
+        position: relative;
+        height: 35px;
+        width: 35px;
+        background-color: #fff;
+        border-radius: 100px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+      .overlap {
+        height: 200px;
+        width: 300px;
+        /* background-color: red; */
+        position: absolute;
+        z-index: -1;
+      }
+      .plus .ele1 {
+        position: absolute;
+        rotate: 90deg;
+      }
+      .ele {
+        width: 60%;
+        height: 12%;
+        background-color: black;
+        border-radius: 100px;
+      }
+      .elecorrect {
+        background-color: #46fd46;
+        background-color: #ffff3e;
+        background-color: #f6972b;
+        background-color: #f95e50;
+      }
+      .num {
+        width: 120px;
+        /* background-color: white; */
+        color: #fff;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: 60px;
+        font-weight: 500;
+      }
+      @media (max-width: 450px) {
+        body {
+          /* background-color: red; */
+          height: fit-content;
+          overflow: scroll;
+          height: fit-content;
+          padding: 0px;
+          padding-top: -100px;
+          display: block;
+        }
+        .container {
+          margin-top: 0px;
+          height: fit-content;
+        }
+        .top {
+          /* background-color: blue; */
+          padding: 20px;
+        }
+        .again {
+          font-size: 18px;
+        }
+        .between {
+          font-size: 18px;
+        }
+        .header {
+          font-size: 30px;
+        }
+        .line {
+          display: none;
+        }
+        .question {
+          height: 100px;
+          width: 100px;
+          font-size: 70px;
+        }
+        .mainsection {
+          margin-top: 80px;
+        }
+        .bottom {
+          flex-direction: column-reverse;
+        }
+        .score {
+          font-size: 20px;
+          text-align: center;
+        }
+        .num {
+          scale: 1;
+        }
+        .form {
+          scale: 0.9;
+        }
+        .sub {
+          margin-top: -20px;
+        }
+        .reply {
+          font-size: 28px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="top">
+        <div class="again">Again!</div>
+        <div class="between">Between 1 and 20</div>
+      </div>
+      <div class="header">Guess My Number!</div>
+      <div class="mainsection">
+        <div class="question">?</div>
+        <div class="line"></div>
+      </div>
+      <div class="bottom">
+        <div class="form">
+          <div class="overlap"></div>
+          <div class="guess">
+            <div class="minus">
+              <div class="ele"></div>
+            </div>
+            <div class="num"></div>
+            <div class="plus">
+              <div class="ele"></div>
+              <div class="ele ele1"></div>
+            </div>
+          </div>
+          <button class="sub">Check!</button>
+        </div>
+        <div class="score">
+          <div class="reply">🙂 Start guessing!</div>
+          <div class="current">Score: <span class="currentscore"></span></div>
+          <div class="total">Total Score: <span class="totalscore"></span></div>
+          <div class="highest">
+            Highest Score: <span class="highestscore"></span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+      var again = document.querySelector(".again");
+      var question = document.querySelector(".question");
+      var num = document.querySelector(".num");
+      var line = document.querySelector(".line");
+      var sub = document.querySelector(".sub");
+      var body = document.querySelector("body");
+      var reply = document.querySelector(".reply");
+      var cscore = document.querySelector(".currentscore");
+      var hscore = document.querySelector(".highestscore");
+      var plus = document.querySelector(".plus");
+      var minus = document.querySelector(".minus");
+      var form = document.querySelector(".form");
+      var overlap = document.querySelector(".overlap");
+      var ele = document.querySelectorAll(".ele");
+      var number = 0;
+      var random = Math.floor(Math.random() * 20 + 1);
+      console.log(random);
+      var isCorrect = false;
+      num.innerHTML = `${number}`;
+      var score = 0;
+      cscore.innerHTML = score;
+      var highestScore = 0;
+      hscore.innerHTML = highestScore;
+      tscore = 0;
+      var total = document.querySelector(".totalscore");
+      total.innerHTML = tscore;
+
+      var maxtries = 10;
+      var tries = 0;
+      plus.addEventListener("click", function () {
+        if (number < 20) {
+          number++;
+          num.innerHTML = number;
+          reply.innerHTML = "🤔 Guessing...";
+        }
+      });
+      minus.addEventListener("click", function () {
+        if (number > 1) {
+          number--;
+          num.innerHTML = number;
+          reply.innerHTML = "🤔 Guessing...";
+        }
+      });
+      sub.addEventListener("click", function () {
+        tries++;
+        if (score == tscore) {
+          tscore = score;
+        }
+        if (number == random) {
+          overlap.style.zIndex = 1;
+          question.style.scale = "1.2";
+          line.style.backgroundColor = "#46fd46";
+          question.style.backgroundColor = "#46fd46";
+          reply.innerHTML = "😃 Correct!";
+          score = score + (maxtries - tries + 1);
+          question.innerHTML = random;
+          cscore.innerHTML = score;
+          tscore = tscore + score;
+          total.innerHTML = tscore;
+          if (tscore > highestScore) {
+            highestScore = tscore;
+            hscore.innerHTML = highestScore;
+          }
+        } else {
+          reply.innerHTML = number - random;
+          if (tries == 4 && random != number) {
+            reply.innerHTML = "😢 You lost";
+            reply.style.color = "#f95e50";
+            overlap.style.zIndex = "1";
+            tscore = 0;
+            total.innerHTML = tscore;
+          } else if (number - random >= -2 && number - random < 0) {
+            question.style.backgroundColor = "#ffff3e";
+            line.style.backgroundColor = "#ffff3e";
+            reply.innerHTML = "😲 Slightly lower";
+          } else if (number - random <= 2 && number - random > 0) {
+            reply.innerHTML = "😲 Slightly greater";
+            question.style.backgroundColor = "#ffff3e";
+            line.style.backgroundColor = "#ffff3e";
+          } else if (number - random >= -4 && number - random < 0) {
+            reply.innerHTML = "🤨 Too lower";
+            question.style.backgroundColor = "#f6972b";
+            line.style.backgroundColor = "#f6972b";
+          } else if (number - random <= 4 && number - random > 0) {
+            reply.innerHTML = "🤨 Too greater";
+            question.style.backgroundColor = "#f6972b";
+            line.style.backgroundColor = "#f6972b";
+          } else {
+            reply.innerHTML = "🙃 Too far";
+            question.style.backgroundColor = "#f95e50";
+            line.style.backgroundColor = "#f95e50";
+          }
+        }
+        console.log(tries);
+      });
+      again.addEventListener("click", function () {
+        tries = 0;
+        score = 0;
+        reply.innerHTML = "🙂 Start guessing!";
+        question.style.backgroundColor = "white";
+        question.style.scale = 1;
+        question.innerHTML = "?";
+        line.style.backgroundColor = "white";
+        score = 0;
+        cscore.innerHTML = "0";
+        overlap.style.zIndex = -1;
+        number = 1;
+        num.innerHTML = `${number}`;
+        random = Math.floor(Math.random() * 20 + 1);
+        console.log(random);
+        reply.style.color = "white";
+      });
+    </script>
+  </body>
+</html>
